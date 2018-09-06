@@ -1,0 +1,61 @@
+version: '2'
+services:
+  web:
+    image: fpfis/httpd-php-dev:7.1
+    working_dir: /var/www/html
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/var/www/html # Non Mac users.
+      # - nfsmount:/var/www/html # Mac Users with the nfsmount volume.
+    environment:
+      XDEBUG_CONFIG: "remote_enable=1 remote_host=10.254.254.254 remote_port=9000 idekey=PHPSTORM remote_autostart=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+      # For Xdebug setup, run this command in the terminal:
+      # For Mac users: sudo ifconfig en0 alias 10.254.254.254 255.255.255.0
+      # For Linux users: sudo ip addr add 10.254.254.254/32 dev lo label lo:1
+  mysql:
+    image: percona/percona-server:5.6
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+#    ports:
+#      - 3306:3306
+  syncope:
+    depends_on:
+      - mysql
+    image: apache/syncope:2.1.1
+    ports:
+      - "18080:8080"
+    restart: always
+    environment:
+      DBMS: mysql
+      DB_URL: jdbc:mysql://mysql:3306/syncope?characterEncoding=UTF-8&relaxAutoCommit=true&useSSL=false
+      DB_USER: syncope
+      DB_PASSWORD: syncope
+      DB_POOL_MAX: 10
+      DB_POOL_MIN: 2
+      OPENJPA_REMOTE_COMMIT: sjvm
+
+  syncope-console:
+    depends_on:
+      - syncope
+    image: apache/syncope-console:2.1.1
+    ports:
+      - "28080:8080"
+    restart: always
+    environment:
+      CORE_SCHEME: http
+      CORE_HOST: syncope
+      CORE_PORT: 8080
+
+#### Mac users: uncomment the "volumes" key to enable the NFS file sharing. You can find more information about Docker for Mac here: https://github.com/openeuropa/openeuropa/blob/master/docs/starting/tooling.md#using-docker-on-macos
+
+#volumes:
+#  nfsmount:
+#    driver: local
+#    driver_opts:
+#      type: nfs
+#      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+#      device: ":${PWD}/"
+
+#### End Mac users.
