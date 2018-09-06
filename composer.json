@@ -1,0 +1,17 @@
+{
+  "name": "ec-europa/authorsation-service-dev",
+  "description": "Authorisation service for development.",
+  "type": "project",
+  "license": "EUPL-1.2",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "openeuropa/task-runner": "^0.7"
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "7.0"
+    }
+  }
+}
