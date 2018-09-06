@@ -14,22 +14,22 @@ services:
   syncope:
     image: apache/syncope:2.1.1
     environment:
-      DBMS: mysql
-      DB_URL: jdbc:mysql://mysql:3306/syncope?characterEncoding=UTF-8&relaxAutoCommit=true&useSSL=false
-      DB_USER: syncope
-      DB_PASSWORD: syncope
-      DB_POOL_MAX: 10
-      DB_POOL_MIN: 2
-      OPENJPA_REMOTE_COMMIT: sjvm
+      - DBMS=mysql
+      - DB_URL=jdbc:mysql://mysql:3306/syncope?characterEncoding=UTF-8&relaxAutoCommit=true&useSSL=false
+      - DB_USER=syncope
+      - DB_PASSWORD=syncope
+      - DB_POOL_MAX=10
+      - DB_POOL_MIN=2
+      - OPENJPA_REMOTE_COMMIT=sjvm
   syncope-console:
     image: apache/syncope-console:2.1.1
     environment:
-      CORE_SCHEME: http
-      CORE_HOST: syncope
-      CORE_PORT: 8080
+      - CORE_SCHEME=http
+      - CORE_HOST=syncope
+      - CORE_PORT=8080
 
 pipeline:
-  syncope-provisino:
+  syncope-provision:
     image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/run drupal:site-install
