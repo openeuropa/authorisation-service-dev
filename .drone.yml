@@ -29,6 +29,18 @@ services:
       - CORE_PORT=8080
 
 pipeline:
+  composer-install:
+    group: prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
+      - composer install
+  grumphp:
+    group: test
+    image: fpfis/httpd-php-dev:7.1
+    commands:
+      - ./vendor/bin/grumphp run
   syncope-provision:
     image: fpfis/httpd-php-dev:7.1
     commands:
