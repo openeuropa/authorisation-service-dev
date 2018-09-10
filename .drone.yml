@@ -44,4 +44,4 @@ pipeline:
   syncope-provision:
     image: fpfis/httpd-php-dev:7.1
     commands:
-      - ./vendor/bin/run drupal:site-install
+      - ./vendor/bin/run oe-authorisation-service:setup
