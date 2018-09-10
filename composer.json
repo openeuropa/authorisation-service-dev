@@ -23,11 +23,5 @@
     "platform": {
       "php": "7.0"
     }
-  },
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/Users/hernani/Sites/ec/syncope-php-client"
-    }
-  ]
+  }
 }
