@@ -23,7 +23,7 @@ services:
   syncope:
     depends_on:
       - mysql
-    image: apache/syncope:2.1.1
+    build: .
     ports:
       - "18080:8080"
     restart: always

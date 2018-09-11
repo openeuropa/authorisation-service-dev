@@ -10,9 +10,8 @@ You can build the test site by running the following steps.
 * Install all the composer dependencies:
 
 ```
-$ composer install
+composer install
 ```
-
 
 ## Using Docker Compose
 
@@ -26,17 +25,23 @@ Requirements:
 Run:
 
 ```
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 Then:
 
 ```
-$ docker-compose exec web oe-authorisation-service:setup
+docker-compose exec syncope ./vendor/bin/robo setup
 ```
 
-To run the grumphp test:
+To list all commands:
 
 ```
-$ docker-compose exec web ./vendor/bin/grumphp run
+docker-compose exec syncope ./vendor/bin/robo
+```
+
+Full rebuild `syncope` service during development:
+
+```
+docker-compose build --force-rm --no-cache syncope
 ```
