@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "473c6c959605d87d993c1928cbb60ea2",
+    "content-hash": "7a8cd17302726bfe808bf2e8e06933a1",
     "packages": [
         {
             "name": "consolidation/annotated-command",
@@ -471,62 +471,6 @@
             "time": "2018-08-08T23:37:23+00:00"
         },
         {
-            "name": "gitonomy/gitlib",
-            "version": "v1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gitonomy/gitlib.git",
-                "reference": "932a960221ae3484a3e82553b3be478e56beb68d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gitonomy/gitlib/zipball/932a960221ae3484a3e82553b3be478e56beb68d",
-                "reference": "932a960221ae3484a3e82553b3be478e56beb68d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3 || ^7.0",
-                "symfony/process": "^2.3|^3.0|^4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35|^5.7",
-                "psr/log": "^1.0"
-            },
-            "suggest": {
-                "psr/log": "Add some log"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Gitonomy\\Git\\": "src/Gitonomy/Git/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexandre Salomé",
-                    "email": "alexandre.salome@gmail.com",
-                    "homepage": "http://alexandre-salome.fr"
-                },
-                {
-                    "name": "Julien DIDIER",
-                    "email": "genzo.wm@gmail.com",
-                    "homepage": "http://www.jdidier.net"
-                }
-            ],
-            "description": "Library for accessing git",
-            "homepage": "http://gitonomy.com",
-            "time": "2018-04-22T19:55:36+00:00"
-        },
-        {
             "name": "grasmash/expander",
             "version": "1.0.0",
             "source": {
@@ -803,39 +747,6 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
-            "name": "jakeasmith/http_build_url",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jakeasmith/http_build_url.git",
-                "reference": "93c273e77cb1edead0cf8bcf8cd2003428e74e37"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jakeasmith/http_build_url/zipball/93c273e77cb1edead0cf8bcf8cd2003428e74e37",
-                "reference": "93c273e77cb1edead0cf8bcf8cd2003428e74e37",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/http_build_url.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jake A. Smith",
-                    "email": "theman@jakeasmith.com"
-                }
-            ],
-            "description": "Provides functionality for http_build_url() to environments without pecl_http.",
-            "time": "2017-05-01T15:36:40+00:00"
-        },
-        {
             "name": "league/container",
             "version": "2.4.1",
             "source": {
@@ -901,55 +812,18 @@
             "time": "2017-05-10T09:20:27+00:00"
         },
         {
-            "name": "nuvoleweb/robo-config",
-            "version": "0.2.2",
+            "name": "openeuropa/syncope-php-client",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nuvoleweb/robo-config.git",
-                "reference": "ce4c3285f2cbc692d96f5f2d57eb2c5068aeadd2"
+                "url": "https://github.com/openeuropa/syncope-php-client.git",
+                "reference": "d1570cdb72e505f7fe5d8ddf991c62f54ddaf727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuvoleweb/robo-config/zipball/ce4c3285f2cbc692d96f5f2d57eb2c5068aeadd2",
-                "reference": "ce4c3285f2cbc692d96f5f2d57eb2c5068aeadd2",
+                "url": "https://api.github.com/repos/openeuropa/syncope-php-client/zipball/d1570cdb72e505f7fe5d8ddf991c62f54ddaf727",
+                "reference": "d1570cdb72e505f7fe5d8ddf991c62f54ddaf727",
                 "shasum": ""
-            },
-            "require": {
-                "consolidation/robo": "~1"
-            },
-            "require-dev": {
-                "drupal/coder": "^8.2",
-                "phpro/grumphp": "^0.11.4",
-                "phpunit/phpunit": "^5"
-            },
-            "type": "robo-tasks",
-            "autoload": {
-                "psr-4": {
-                    "NuvoleWeb\\Robo\\Task\\Config\\": "src",
-                    "NuvoleWeb\\Robo\\Tests\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Antonio De Marco",
-                    "email": "antonio@nuvole.org"
-                }
-            ],
-            "description": "CI/developer-friendly configuration processor for Robo.",
-            "time": "2018-08-22T06:38:44+00:00"
-        },
-        {
-            "name": "openeuropa/syncope-php-client",
-            "version": "dev-OPENEUROPA-1207",
-            "dist": {
-                "type": "path",
-                "url": "/Users/hernani/Sites/ec/syncope-php-client",
-                "reference": "279d4d9cefe28fbb318ffb1183a889815945103b",
-                "shasum": null
             },
             "require": {
                 "ext-curl": "*",
@@ -960,8 +834,8 @@
             },
             "require-dev": {
                 "openeuropa/code-review": "~0.2",
-                "openeuropa/task-runner": "^0.4",
-                "phpunit/phpunit": "^4.8"
+                "openeuropa/task-runner": "~0.8",
+                "phpunit/phpunit": "~5.0|~6.0"
             },
             "type": "library",
             "autoload": {
@@ -969,50 +843,11 @@
                     "OpenEuropa\\SyncopePhpClient\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "OpenEuropa\\SyncopePhpClient\\": "test/"
-                }
-            }
-        },
-        {
-            "name": "openeuropa/task-runner",
-            "version": "0.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/openeuropa/task-runner.git",
-                "reference": "f4253ad9900abe83bd06f50a2e4152da60ee125c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/openeuropa/task-runner/zipball/f4253ad9900abe83bd06f50a2e4152da60ee125c",
-                "reference": "f4253ad9900abe83bd06f50a2e4152da60ee125c",
-                "shasum": ""
-            },
-            "require": {
-                "consolidation/robo": "^1.2.2",
-                "gitonomy/gitlib": "~1",
-                "jakeasmith/http_build_url": "^1.0",
-                "nuvoleweb/robo-config": "~0.2"
-            },
-            "require-dev": {
-                "openeuropa/code-review": "~0.3",
-                "phpunit/phpunit": "^5||^6.0"
-            },
-            "bin": [
-                "bin/run"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "OpenEuropa\\TaskRunner\\": "./src/"
-                }
-            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "EUPL-1.2"
             ],
-            "time": "2018-08-13T11:47:34+00:00"
+            "time": "2018-09-11T11:03:49+00:00"
         },
         {
             "name": "psr/container",
@@ -1613,7 +1448,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "openeuropa/syncope-php-client": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

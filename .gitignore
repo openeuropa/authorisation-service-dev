@@ -9,3 +9,4 @@ package-lock.json
 runner.yml
 vendor
 yarn.lock
+docker-compose.yml

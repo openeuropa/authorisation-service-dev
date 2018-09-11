@@ -7,11 +7,8 @@
   "prefer-stable": true,
   "require": {
     "guzzlehttp/guzzle": "^6.3",
-    "openeuropa/syncope-php-client": "*"
-  },
-  "require-dev": {
-    "openeuropa/code-review": "~0.2",
-    "openeuropa/task-runner": "~0.7"
+    "openeuropa/syncope-php-client": "dev-master",
+    "consolidation/robo": "^1.0"
   },
   "autoload": {
     "psr-4": {
