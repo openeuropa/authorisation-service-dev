@@ -11,9 +11,9 @@ services:
     image: percona/percona-server:5.6
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE: syncope
-      - MYSQL_USER: syncope
-      - MYSQL_PASSWORD: syncope
+      - MYSQL_DATABASE=syncope
+      - MYSQL_USER=syncope
+      - MYSQL_PASSWORD=syncope
   syncope:
     image: apache/syncope:2.1.1
     environment:
