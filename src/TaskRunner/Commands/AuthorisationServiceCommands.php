@@ -5,9 +5,13 @@ declare(strict_types = 1);
 namespace Ec\Europa\AuthorisationServiceDev\TaskRunner\Commands;
 
 use GuzzleHttp\Client;
+use OpenEuropa\SyncopePhpClient\Api\AnyTypeClassesApi;
+use OpenEuropa\SyncopePhpClient\Api\AnyTypesApi;
+use OpenEuropa\SyncopePhpClient\ApiException;
 use OpenEuropa\SyncopePhpClient\Configuration;
-use OpenEuropa\SyncopePhpClient\SyncopePhpClient\Api\AccessTokensApi;
-use OpenEuropa\SyncopePhpClient\SyncopePhpClient\Api\SchemasApi;
+use OpenEuropa\SyncopePhpClient\Model\AnyTypeClassTO;
+use OpenEuropa\SyncopePhpClient\Api\SchemasApi;
+use OpenEuropa\SyncopePhpClient\Model\AnyTypeTO;
 use OpenEuropa\TaskRunner\Commands\AbstractCommands;
 use OpenEuropa\SyncopePhpClient\Model\SchemaTO;
 
@@ -29,24 +33,57 @@ class AuthorisationServiceCommands extends AbstractCommands {
     $config = Configuration::getDefaultConfiguration()
       ->setUsername($username)
       ->setPassword($password)
-      ->setHost($endpoint);
+      ->setHost($endpoint)
+      ->setDebug(TRUE);
 
-    // Provisions schema.
-    $apiInstance = new SchemasApi(
+    // Creates schema field.
+    $schemaApi = new SchemasApi(
       new Client(),
       $config
     );
 
     $xSyncopeDomain = 'Master';
     $schemaTO = new SchemaTO(['key' => 'eulogin_id']);
+    $schemaTO->setClass('org.apache.syncope.common.lib.to.PlainSchemaTO');
 
     try {
-      $apiInstance->createSchema('string', $xSyncopeDomain, $schemaTO);
-    } catch (Exception $e) {
+      $schemaApi->createSchema('PLAIN', $xSyncopeDomain, $schemaTO);
+    }
+    catch (ApiException $e) {
       echo 'Exception when calling SchemasApi->createSchema: ', $e->getMessage(), PHP_EOL;
     }
 
+    // Creates new AnyType class BaseOeUser.
+    $anyTypeClassApi = new AnyTypeClassesApi(
+      new Client(),
+      $config
+    );
+    $anyTypeClassTo = new AnyTypeClassTO(['key' => 'BaseOeUser', 'plainSchemas' => ['eulogin_id']]);
+    try {
+      $anyTypeClassApi->createAnyTypeClass($xSyncopeDomain, $anyTypeClassTo);
+    }
+    catch (ApiException $e) {
+      echo 'Exception when calling AnyTypeClassesApi->createAnyTypeClass: ', $e->getMessage(), PHP_EOL;
+    }
 
+    // Creates new AnyType OeUser.
+    $anyTypeApi = new AnyTypesApi(
+      new Client(),
+      $config
+    );
+
+    $anyTypeTO = new AnyTypeTO(
+      [
+        'key' => 'OeUser',
+        'kind' => 'ANY_OBJECT',
+        'classes' => ['BaseOeUser'],
+      ]);
+    try {
+      $anyTypeApi->createAnyType($xSyncopeDomain, $anyTypeTO);
+    }
+    catch (ApiException $e) {
+      echo 'Exception when calling AnyTypesApi->createAnyType: ', $e->getMessage(), PHP_EOL;
+    }
 
   }
 
