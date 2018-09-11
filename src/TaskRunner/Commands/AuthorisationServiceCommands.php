@@ -7,11 +7,13 @@ namespace Ec\Europa\AuthorisationServiceDev\TaskRunner\Commands;
 use GuzzleHttp\Client;
 use OpenEuropa\SyncopePhpClient\Api\AnyTypeClassesApi;
 use OpenEuropa\SyncopePhpClient\Api\AnyTypesApi;
+use OpenEuropa\SyncopePhpClient\Api\RolesApi;
 use OpenEuropa\SyncopePhpClient\ApiException;
 use OpenEuropa\SyncopePhpClient\Configuration;
 use OpenEuropa\SyncopePhpClient\Model\AnyTypeClassTO;
 use OpenEuropa\SyncopePhpClient\Api\SchemasApi;
 use OpenEuropa\SyncopePhpClient\Model\AnyTypeTO;
+use OpenEuropa\SyncopePhpClient\Model\RoleTO;
 use OpenEuropa\TaskRunner\Commands\AbstractCommands;
 use OpenEuropa\SyncopePhpClient\Model\SchemaTO;
 use Robo\Exception\TaskException;
@@ -84,6 +86,28 @@ class AuthorisationServiceCommands extends AbstractCommands {
     }
     catch (ApiException $e) {
       throw new TaskException('Exception when calling anyTypeApi->createAnyType: ', $e->getMessage());
+    }
+
+    // Provision role to search across the realms.
+    $rolesApi = new RolesApi(
+      new Client(),
+      $config
+    );
+
+    $roleTo = new RoleTO([
+      'key' => 'system-user-site',
+      'realms' => ['/'],
+      'entitlements' => [
+        'OeUser_SEARCH',
+        'OeUser_READ',
+      ],
+    ]);
+
+    try {
+      $rolesApi->createRole($xSyncopeDomain, $roleTo);
+    }
+    catch (ApiException $e) {
+      throw new TaskException('Exception when calling rolesApi->createRole: ', $e->getMessage());
     }
 
   }
