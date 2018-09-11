@@ -14,6 +14,7 @@ use OpenEuropa\SyncopePhpClient\Api\SchemasApi;
 use OpenEuropa\SyncopePhpClient\Model\AnyTypeTO;
 use OpenEuropa\TaskRunner\Commands\AbstractCommands;
 use OpenEuropa\SyncopePhpClient\Model\SchemaTO;
+use Robo\Exception\TaskException;
 
 /**
  * Class AuthorisationServiceCommands.
@@ -50,7 +51,7 @@ class AuthorisationServiceCommands extends AbstractCommands {
       $schemaApi->createSchema('PLAIN', $xSyncopeDomain, $schemaTO);
     }
     catch (ApiException $e) {
-      echo 'Exception when calling SchemasApi->createSchema: ', $e->getMessage(), PHP_EOL;
+      throw new TaskException('Exception when calling SchemasApi->createSchema: ', $e->getMessage());
     }
 
     // Creates new AnyType class BaseOeUser.
@@ -63,7 +64,7 @@ class AuthorisationServiceCommands extends AbstractCommands {
       $anyTypeClassApi->createAnyTypeClass($xSyncopeDomain, $anyTypeClassTo);
     }
     catch (ApiException $e) {
-      echo 'Exception when calling AnyTypeClassesApi->createAnyTypeClass: ', $e->getMessage(), PHP_EOL;
+      throw new TaskException('Exception when calling anyTypeClassApi->createAnyTypeClass: ', $e->getMessage());
     }
 
     // Creates new AnyType OeUser.
@@ -82,7 +83,7 @@ class AuthorisationServiceCommands extends AbstractCommands {
       $anyTypeApi->createAnyType($xSyncopeDomain, $anyTypeTO);
     }
     catch (ApiException $e) {
-      echo 'Exception when calling AnyTypesApi->createAnyType: ', $e->getMessage(), PHP_EOL;
+      throw new TaskException('Exception when calling anyTypeApi->createAnyType: ', $e->getMessage());
     }
 
   }
