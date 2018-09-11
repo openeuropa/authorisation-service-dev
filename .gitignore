@@ -2,6 +2,7 @@
 .idea
 behat.yml
 build
+docker-compose.yml
 grumphp.yml
 node_modules
 npm-debug.log
