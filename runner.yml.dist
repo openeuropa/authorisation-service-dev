@@ -2,4 +2,4 @@ authorisation:
   server:
     username: "admin"
     password: "password"
-    endpoint: "http://localhost:18080/syncope/rest"
+    endpoint: "http://syncope:8080/syncope/rest"
