@@ -1,0 +1,5 @@
+authorisation:
+  server:
+    username: "admin"
+    password: "password"
+    endpoint: "http://syncope:8080/syncope/rest"

@@ -1,0 +1,51 @@
+workspace:
+  base: /test
+  path: authorisation-service-dev
+
+services:
+  web:
+    image: fpfis/httpd-php-dev:7.1
+    environment:
+      - DOCUMENT_ROOT=/test/authorisation-dev
+  mysql:
+    image: percona/percona-server:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=syncope
+      - MYSQL_USER=syncope
+      - MYSQL_PASSWORD=syncope
+  syncope:
+    image: apache/syncope:2.1.1
+    environment:
+      - DBMS=mysql
+      - DB_URL=jdbc:mysql://mysql:3306/syncope?characterEncoding=UTF-8&relaxAutoCommit=true&useSSL=false
+      - DB_USER=syncope
+      - DB_PASSWORD=syncope
+      - DB_POOL_MAX=10
+      - DB_POOL_MIN=2
+      - OPENJPA_REMOTE_COMMIT=sjvm
+  syncope-console:
+    image: apache/syncope-console:2.1.1
+    environment:
+      - CORE_SCHEME=http
+      - CORE_HOST=syncope
+      - CORE_PORT=8080
+
+pipeline:
+  composer-install:
+    group: prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
+      - composer install
+  grumphp:
+    group: test
+    image: fpfis/httpd-php-dev:7.1
+    commands:
+      - ./vendor/bin/grumphp run
+  syncope-provision:
+    image: fpfis/httpd-php-dev:7.1
+    group: prepare
+    commands:
+      - ./vendor/bin/run oe-authorisation-service:setup

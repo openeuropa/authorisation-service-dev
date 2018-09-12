@@ -1,0 +1,27 @@
+{
+  "name": "openeuropa/authorsation-service-dev",
+  "description": "Authorisation service for development.",
+  "type": "project",
+  "license": "EUPL-1.2",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "guzzlehttp/guzzle": "^6.3",
+    "openeuropa/syncope-php-client": "*"
+  },
+  "require-dev": {
+    "openeuropa/code-review": "~0.2",
+    "openeuropa/task-runner": "~0.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ec\\Europa\\AuthorisationServiceDev\\": "./src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "7.0"
+    }
+  }
+}
